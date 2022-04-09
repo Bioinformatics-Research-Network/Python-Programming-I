@@ -70,18 +70,14 @@ The following tasks describe the functions that should be included in `utils.py`
 
 Usage:
 
-```R
-id_converter(ids=c("ENSG00000147889", 8243))
+```python
+id_converter(ids=["ENSG00000147889", 8243])
 ```
 
 Corresponding output:
 
-```R
-# $ENSG00000147889
-# [1] "CDKN2A"
-# 
-# $`8243`
-# [1] "SMC1A"
+```python
+{'ENSG00000147889': ['CDKN2A'], 8243: ['SMC1A']}
 ```
 
 
@@ -90,13 +86,13 @@ Corresponding output:
 Usage:
 
 ```R
-id_converter(ids=c("NOT-A-VALID-ID"))
+id_converter(ids=["NOT-A-VALID-ID"])
 ```
 
 Output (error message may vary):
 
-```R
-# Error: Input contains invalid gene IDs: "NOT-A-VALID-ID"
+```python
+# ValueError: Unknown gene IDs supplied: NOT-A-VALID-ID
 ```
 
 </details>
