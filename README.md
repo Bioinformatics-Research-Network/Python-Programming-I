@@ -85,7 +85,7 @@ Corresponding output:
 
 Usage:
 
-```R
+```python
 id_converter(ids=["NOT-A-VALID-ID"])
 ```
 
@@ -125,7 +125,7 @@ Output (error message may vary):
 
 Input:
 
-```R
+```python
 find_snvs(
   cancer = "ATGCGCTA",
   normal = "ATGCTCTT"
@@ -134,17 +134,17 @@ find_snvs(
 
 Output:
 
-```R
-#   position cancer normal
-# 1        5      G      T
-# 2        8      A      T
+```python
+#    position cancer normal
+# 4         4      G      T
+# 7         7      A      T
 ```
 
 **Example 2**
 
 Input:
 
-```R
+```python
 find_snvs(
   cancer = "ATGCGCTATGCACTG",
   normal = "ATGCTCTT"
@@ -153,8 +153,8 @@ find_snvs(
 
 Output (error text may vary):
 
-```R
-# Error: Sequences should be the same length.
+```python
+# ValueError: Sequences should be the same length.
 ```
 
 </details>
@@ -183,28 +183,28 @@ NOTE: For additional background on the transcription of DNA to RNA, see the foll
 
 Input:
 
-```R
+```python
 transcribe("AAAGTCGAGGTGTAGATCAAACCC")
 ```
 
 Output:
 
-```R
-# "UUUCAGCUCCACAUCUAGUUUGGG"
+```python
+# 'UUUCAGCUCCACAUCUAGUUUGGG'
 ```
 
 **Example 2**
 
 Input:
 
-```R
+```python
 transcribe("AAAGT___CGAGGTGTAGATCAAACCC")
 ```
 
 Output (error text may vary):
 
-```R
-# Error: Invalid bases provided: "_" - should be one of "A", "T", "G", "C" 
+```python
+# ValueError: All supplied sequences must be one of 'A', 'T', 'G', or 'C'
 ```
 
 </details>
@@ -233,28 +233,28 @@ NOTE: For additional background on the conversion of RNA to protein (translation
 
 Input:
 
-```R
+```python
 translate("UUUCAGCUCCACAUCUAGUUUGGG")
 ```
 
 Output:
 
-```R
-# "FQLHI*FG"
+```python
+# 'FQLHI*FG'
 ```
 
 **Example 2**
 
 Input:
 
-```R
+```python
 translate("UUAG")
 ```
 
 Output (error text may vary):
 
-```R
-# Error: Input sequence not evenly divisible by 3.
+```python
+# ValueError: Supplied sequence length must be divisible by 3
 ```
 
 </details>
@@ -286,7 +286,7 @@ Output (error text may vary):
 
 Input:
 
-```R
+```python
 protein_variant(
   cancer = "AAAGTGGAGGTGTAGATCAAACCC",
   normal = "AAAGTCGAGGTGTAGATGAAACCC"
@@ -295,10 +295,10 @@ protein_variant(
 
 Output:
 
-```R
-#   codon_number cancer normal
-# 1            2      H      Q
-# 2            6      *      Y
+```python
+#    codon_number cancer normal
+# 1             1      H      Q
+# 5             5      *      Y
 ```
 
 
@@ -306,7 +306,7 @@ Output:
 
 Input:
 
-```R
+```python
 protein_variant(
   cancer = "AAAGTGGAGGTG",
   normal = "AAAGTCGAGGTGTAGATGAAACCC"
@@ -315,8 +315,8 @@ protein_variant(
 
 Output (error text may vary):
 
-```R
-# Error: Sequences should be the same length.
+```python
+# ValueError: a and b must be the same length and longer than 0
 ```
 
 </details>
@@ -354,41 +354,52 @@ NOTE: For additional background on mutations, see the following resource: [Khan 
 
 Input:
 
-```R
-sequences <- data.frame(
-  gene_id = c("ENSG00000147889", 8243, 675),
-  cancer = c("AAAGTGGAGGTGTAGATCAAACCC", "CATATCCTGATCGGCCTGATCGGGAGG", "AGGGCTTTTACCCAGCATTGA"),
-  normal = c("AAAGTCGAGGTGTAGATGAAACCC", "CATAGCCTGATCGGCCTGAGCGGGAGG", "AGGGCTTTTACCCAGGATTGA")
+```python
+sequences = pd.DataFrame(
+    {
+        "gene_id": ["ENSG00000147889", 8243, 675],
+        "cancer": [
+            "AAAGTGGAGGTGTAGATCAAACCC",
+            "CATATCCTGATCGGCCTGATCGGGAGG",
+            "AGGGCTTTTACCCAGCATTGA",
+        ],
+        "normal": [
+            "AAAGTCGAGGTGTAGATGAAACCC",
+            "CATAGCCTGATCGGCCTGAGCGGGAGG",
+            "AGGGCTTTTACCCAGGATTGA",
+        ],
+    }
 )
 find_nonsense(sequences)
 ```
 
 Output:
 
-```R
-#            gene_id symbol codon_number cancer normal
-# 2  ENSG00000147889 CDKN2A            6      *      Y
-# 1             8243  SMC1A            2      *      S
-# 21            8243  SMC1A            7      *      S
+```python
+#            gene_id  symbol  codon_number cancer normal
+# 5  ENSG00000147889  CDKN2A             5      *      Y
+# 1             8243   SMC1A             1      *      S
+# 6             8243   SMC1A             6      *      S
 ```
 
 **Example 2**
 
 Input:
 
-```R
-sequences <- data.frame(
-  gene_id = c("ENSG00000147889", 8243, "NOT-A-GENE"),
-  cancer = c("AAAGTGGAGGTGTAGATCAAACCC", "CATATCCTGATCGGCCTGATCGGGAGG", "AGGGCTTTTACCCAGCATTGA"),
-  normal = c("AAAGTCGAGGTGTAGATGAAACCC", "CATAGCCTGATCGGCCTGAGCGGGAGG", "AGGGCTTTTACCCAGGATTGA")
+```python
+sequences = pd.DataFrame(
+    {
+        "gene_id": ["ABCD"], "cancer": ["AAAGTGGAGGTGTAUATCAAACCC"],
+        "normal": ["AAAGTCGAGGTGTAGATGAAACCC"]
+    }
 )
 find_nonsense(sequences)
 ```
 
 Output (error text may vary):
 
-```R
-# Error: "NOT-A-GENE" is not a valid gene.
+```python
+# ValueError: All supplied sequences must be one of 'A', 'T', 'G', or 'C'
 ```
 
 </details>
