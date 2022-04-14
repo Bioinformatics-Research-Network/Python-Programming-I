@@ -18,7 +18,7 @@ To complete this skill assessment, you will need to launch it in GitHub classroo
 
 ### Useful details
 
-1. Your code must not depend on any packages outside of base R v4.1.2
+1. Your code must not depend on any modules outside of `pandas`, `numpy`, and the default modules in Python v3.9.
 2. To test your code locally, run `pytest` from the command line
     - Make sure to address any failed tests before proceeding.
 3. To lint your code locally, run `flake8` from the command line
@@ -60,7 +60,7 @@ The following tasks describe the functions that should be included in `utils.py`
 1. **Name**: Needs to be a function called `id_converter()`
 2. **Arguments**: 
     - `ids`: A vector containing gene IDs.
-3. **Returns**: A `dict` object. The list element names are the input IDs and each element contains a list with the corresponding gene symbol(s).
+3. **Returns**: A `dict` object. The keys are the input IDs and the values are lists with the corresponding gene symbol(s).
 4. **Errors**: Should produce an error if the user attempts to supply an invalid gene ID. 
 
 <details>
@@ -106,16 +106,16 @@ Output (error message may vary):
 
 1. **Name**: Needs to be a function called `find_snvs()`
 2. **Arguments**: 
-    - `cancer`: A `character` string containing the tumor DNA sequence
-    - `normal`: A `character` string containing the normal tissue DNA sequence
-3. **Returns**: A `data.frame` which contains the following columns:
+    - `cancer`: A string containing the tumor DNA sequence
+    - `normal`: A string containing the normal tissue DNA sequence
+3. **Returns**: A `DataFrame` which contains the following columns:
     - `position`: gives the position of an alteration within the input sequence
     - `cancer`: gives the cancer base at that position
     - `normal`: gives the normal base at that position
 4. **Errors**: Should produce an error if the user attempts to supply any of the following:
     - A sequence that contains incorrect genomic bases (anything not in "A", "T", "G", or "C")
     - A `cancer` sequence which has a different length from the `normal` sequence
-    - A non-character or empty argument
+    - A non-string or empty argument
  
 <details>
 <summary>Examples</summary>
@@ -174,7 +174,7 @@ NOTE: For additional background on the transcription of DNA to RNA, see the foll
 3. **Returns**: The corresponding RNA sequence. Assume the input DNA sequence is in the 3->5 orientation (template strand) and return the resulting RNA in the 5->3 orientation. 
 4. **Errors**: Should produce an error if the user attempts to supply any of the following:
     - A sequence that contains incorrect genomic bases (anything not in "A", "T", "G", or "C")
-    - A non-character or empty argument
+    - A non-string or empty argument
 
 <details>
 <summary>Examples</summary>
@@ -223,7 +223,7 @@ NOTE: For additional background on the conversion of RNA to protein (translation
 3. **Returns**: The corresponding protein sequence. Stop codons should be indicated by "\*".
 4. **Errors**: Should produce an error if the user attempts to supply any of the following:
     - A sequence that contains incorrect genomic bases (anything not in "A", "U", "G", or "C")
-    - A non-character or empty argument
+    - A non-string or empty argument
     - A sequence in which the number of bases is not evenly divisible by 3
 
 <details>
@@ -268,16 +268,16 @@ Output (error text may vary):
 
 1. **Name**: Needs to be a function called `protein_variant()`
 2. **Arguments**: 
-    - `cancer`: A `character` string containing the tumor DNA sequence
-    - `normal`: A `character` string containing the normal tissue DNA sequence
-3. **Returns**: An `data.frame` which contains the following columns:
+    - `cancer`: A string containing the tumor DNA sequence
+    - `normal`: A string containing the normal tissue DNA sequence
+3. **Returns**: A `DataFrame` which contains the following columns:
     - `codon_number`: gives the position of an altered codon within the input sequence
     - `cancer`: gives the cancer amino acid at that position
     - `normal`: gives the normal amino acid at that position
 4. **Errors**: Should produce an error if the user attempts to supply any of the following:
     - A sequence that contains incorrect genomic bases (anything not in "A", "T", "G", or "C")
     - A `cancer` sequence which has a different length from the `normal` sequence
-    - A non-character or empty argument
+    - A non-string or empty argument
 
 <details>
 <summary>Examples</summary>
@@ -332,11 +332,11 @@ NOTE: For additional background on mutations, see the following resource: [Khan 
 
 1. **Name**: Needs to be a function called `find_nonsense()`
 2. **Arguments**: 
-    - `sequences`: a `pd.DataFrame` containing three columns: 
+    - `sequences`: a `DataFrame` containing three columns: 
         - `gene_id`: The ID of the gene (can be either Ensembl or Entrez)
         - `cancer`: The sequence of the gene in the cancer sample
         - `normal`: The sequence of the gene in the normal sample
-3. **Returns**: a `data.frame` with one entry per nonsense mutation, containing the following columns:
+3. **Returns**: a `DataFrame` with one entry per nonsense mutation, containing the following columns:
     - `gene_id`: The gene ID originally provided by the user for this gene
     - `gene_symbol`: The symbol of the supplied gene
     - `codon_number`: gives the position of an altered codon within the input sequence
@@ -344,7 +344,7 @@ NOTE: For additional background on mutations, see the following resource: [Khan 
     - `normal`: gives the normal amino acid at that position
 4. **Errors**: Should produce an error if the user attempts to supply any of the following:
     - A sequence that contains incorrect genomic bases (anything not in "A", "T", "G", or "C")
-    - A non-character or empty argument
+    - A non-string or empty argument
     - If any supplied DNA sequence contains a number of bases not divisible by 3
  
 <details>
