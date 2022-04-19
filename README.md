@@ -1,4 +1,4 @@
-# R Programming I
+# Python Programming I
 
 <!---
 Update the badge below as the version changes
