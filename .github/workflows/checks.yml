@@ -1,0 +1,24 @@
+on: workflow_dispatch
+
+name: checks
+
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.10.4' 
+      - name: Install flake8 and pytest
+        run: |
+          pip install flake8 pytest
+      - name: Lint with flake8
+        run: |
+          flake8 .
+      - name: Test with coverage + pytest
+        run: |
+          pytest
