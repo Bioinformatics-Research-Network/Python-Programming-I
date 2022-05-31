@@ -68,6 +68,8 @@ She needs you to write a function that accepts multiple gene IDs and converts th
 <details>
 <summary>Examples</summary>
 
+<hr>
+
 **Example 1**
 
 Usage:
@@ -96,6 +98,8 @@ Output (error message may vary):
 ```python
 # ValueError: Unknown gene IDs supplied: NOT-A-VALID-ID
 ```
+
+<hr>
 
 </details>
 
@@ -131,6 +135,7 @@ The senior bioinformatician has hypothesized that [single nucleotide variants (S
 <details>
 <summary>Examples</summary>
  
+<hr>
 
 **Example 1**
 
@@ -168,6 +173,9 @@ Output (error text may vary):
 # ValueError: Sequences should be the same length.
 ```
 
+<hr>
+
+
 </details>
 
 
@@ -199,6 +207,9 @@ NOTE: For additional background on the transcription of DNA to RNA, see the foll
 <details>
 <summary>Examples</summary>
 
+<hr>
+
+
 **Example 1**
 
 Input:
@@ -226,6 +237,8 @@ Output (error text may vary):
 ```python
 # ValueError: All supplied sequences must be one of 'A', 'T', 'G', or 'C'
 ```
+
+<hr>
 
 </details>
 
@@ -256,6 +269,8 @@ Your supervisor now needs your help converting the RNA sequences to protein sequ
 <details>
 <summary>Examples</summary>
 
+<hr>
+
 **Example 1**
 
 Input:
@@ -283,6 +298,8 @@ Output (error text may vary):
 ```python
 # ValueError: Supplied sequence length must be divisible by 3
 ```
+
+<hr>
 
 </details>
 
@@ -317,6 +334,8 @@ Thus far, you have built functions to identify variants and convert between DNA,
 
 <details>
 <summary>Examples</summary>
+
+<hr>
 
 **Example 1**
 
@@ -354,6 +373,8 @@ Output (error text may vary):
 ```python
 # ValueError: a and b must be the same length and longer than 0
 ```
+
+<hr>
 
 </details>
 
@@ -393,6 +414,8 @@ In some cases, SNVs can lead to a premature STOP codon. This is called a ["nonse
 <details>
 <summary>Examples</summary>
  
+ <hr>
+
 **Example 1**
 
 Input:
@@ -445,9 +468,10 @@ Output (error text may vary):
 # ValueError: All supplied sequences must be one of 'A', 'T', 'G', or 'C'
 ```
 
+<hr>
+
 </details>
 
-<br>
 
 
 ## Guidance
