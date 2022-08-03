@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/static/v1?label=Language&message=Python&color=%23fc3)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
 [![](https://img.shields.io/static/v1?label=Type&message=Software&color=darkgoldenrod)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
-[![](https://img.shields.io/static/v1?label=Version&message=0.0.2a&color=purple)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
+[![](https://img.shields.io/static/v1?label=Version&message=0.0.3a&color=seagreen)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
 [![](https://img.shields.io/static/v1?label=Lifecycle&message=experimental&color=red)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
 
 **Purpose**: To test your fundamental python programming skills. 
@@ -36,12 +36,14 @@ Good luck and have fun! 😊
 
 [![](https://img.shields.io/static/v1?label=Runs%20on&message=Ubuntu%2022.04%20LTS&color=%235e2750)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
 [![](https://img.shields.io/static/v1?label=Python-Version&message=3.10.4&color=darkturquoise)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
-[![](https://img.shields.io/static/v1?label=Packages-allowed&message=None&color=lightgray)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
+[![](https://img.shields.io/static/v1?label=Packages-allowed&message=Pandas,Numpy&color=lightblue)](https://brnteam.notion.site/e8c045b812d842f8bca8e339d22c38ad?v=6245e8becaa641bcafd276e5d910e402)
 
 
 **Assessment Premise**: 
 
 You are a new bioinformatics programmer 🤓 in the Genomics Division at BioResLabs INC 🏢. Your role is to study the link between mutations and cancer 🧬. The senior bioinformatician needs your help analyzing mutations in breast cancer tumors 💻. She asks you to **write a python script** called `utils.py` which contains functions needed for the analysis.
+
+**Note**: Your code must not rely on any packages except for [Numpy](https://numpy.org/), [Pandas](https://pandas.pydata.org/), and their dependencies.
 
 _The following tasks describe the functions that should be included in `utils.py`._
 
@@ -123,7 +125,7 @@ The senior bioinformatician has hypothesized that [single nucleotide variants (S
 2. **Arguments**: 
     - `cancer`: A string containing the tumor DNA sequence
     - `normal`: A string containing the normal tissue DNA sequence
-3. **Returns**: A `DataFrame` which contains the following columns:
+3. **Returns**: A Pandas `DataFrame` which contains the following columns:
     - `position`: gives the position of an alteration within the input sequence
     - `cancer`: gives the cancer base at that position
     - `normal`: gives the normal base at that position
@@ -323,7 +325,7 @@ Thus far, you have built functions to identify variants and convert between DNA,
 2. **Arguments**: 
     - `cancer`: A string containing the tumor DNA sequence
     - `normal`: A string containing the normal tissue DNA sequence
-3. **Returns**: A `DataFrame` which contains the following columns:
+3. **Returns**: A Pandas `DataFrame` which contains the following columns:
     - `codon_number`: gives the position of an altered codon within the input sequence
     - `cancer`: gives the cancer amino acid at that position
     - `normal`: gives the normal amino acid at that position
@@ -396,11 +398,11 @@ In some cases, SNVs can lead to a premature STOP codon. This is called a ["nonse
 
 1. **Name**: Needs to be a function called `find_nonsense()`
 2. **Arguments**: 
-    - `sequences`: a `DataFrame` containing three columns: 
+    - `sequences`: a Pandas `DataFrame` containing three columns: 
         - `gene_id`: The ID of the gene (can be either Ensembl or Entrez)
         - `cancer`: The sequence of the gene in the cancer sample
         - `normal`: The sequence of the gene in the normal sample
-3. **Returns**: a `DataFrame` with one entry per nonsense mutation, containing the following columns:
+3. **Returns**: a Pandas `DataFrame` with one entry per nonsense mutation, containing the following columns:
     - `gene_id`: The gene ID originally provided by the user for this gene
     - `gene_symbol`: The symbol of the supplied gene
     - `codon_number`: gives the position of an altered codon within the input sequence
@@ -421,6 +423,8 @@ In some cases, SNVs can lead to a premature STOP codon. This is called a ["nonse
 Input:
 
 ```python
+import pandas as pd
+
 sequences = pd.DataFrame(
     {
         "gene_id": ["ENSG00000147889", 8243, 675],
@@ -453,6 +457,8 @@ Output:
 Input:
 
 ```python
+import pandas as pd
+
 sequences = pd.DataFrame(
     {
         "gene_id": ["ABCD"], "cancer": ["AAAGTGGAGGTGTAUATCAAACCC"],
@@ -479,7 +485,7 @@ Output (error text may vary):
 
 ### Useful details
 
-1. Your code must not depend on any packages outside of base python v3.10.4
+1. Your code must not depend on any packages outside of base python v3.10.4, Pandas, and Numpy.
 2. To test your code locally, run `pytest` from the command line
 3. To lint your code locally, run `flake8 .` from the command line
 4. If you are feeling uncomfortable working with the BRN Skill Assessment platform, please consider going back to the python-based tutorial and completing it. If you are still getting stuck, please check the [Getting help](#getting-help) section.
